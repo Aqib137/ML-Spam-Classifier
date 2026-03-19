@@ -32,6 +32,13 @@ Response:
   "confidence": 0.94
 }
 ```
+## Tech Stack
+
+- python
+- FastAPI
+- scikit-learn
+- pandas, numpy
+- joblib
 
 ## Real-World Use Cases
 
