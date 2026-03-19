@@ -2,8 +2,11 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import joblib
 import os
+import logging
 
 app = FastAPI()
+
+logging.basicConfig(level=logging.INFO)
 
 # Load model once at startup
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "model", "model.pkl")
@@ -32,6 +35,8 @@ def predict(data: TextInput):
 
     label = encoder.inverse_transform([pred])[0]
     confidence = probs[pred]
+
+    logging.info(f"Input: {data.text} | Prediction: {label} | Confidence: {confidence}")
 
     return {
         "input": data.text,
